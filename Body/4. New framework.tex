@@ -1,0 +1,76 @@
+% Needs to be usable, so similar format as status quo
+
+% Take emissions into account
+
+
+% (discounting later)
+
+\section{A proposed augmentation to the optimal reliability approach}
+\label{sec:proposed_emission}
+
+The augmentation to the conventional approach for determining optimal reliability values is presented.
+The aim is to convert the single-objective monetary optimisation problem into a two-objective problem, with the second objective being environmental emissions, and then find a single optimal solution.
+The primary approach towards finding this solution will be to apply shadow costing to the emissions.
+To facilitate this, an expression for the emissions is used which is similar to that of the costs, following the renewal model by \citep{Rackwitz2000OptimizationVerification}:
+\begin{equation}
+    \label{eqn:E_total}
+    E_{total}(x) = E_{const}(x) + E_{const}(x) \frac{\omega}{\gamma} + (E_{const}(x) + E_H) \frac{P_f(x)}{\gamma}
+\end{equation}
+Where $E_{total}$ is the lifetime CO\textsubscript{2}-equivalent emissions, given in kilograms (kg CO\textsubscript{2}eq), varying with the same decision variable $x$ as in $C_{total}$.
+The emissions are discounted so that the shadow cost is given as the net present value, which is needed to formulate it commensurate with the conventional costs $C_{total}$ (also given in NPV).
+This similar formulation of  $C_{total}$ and $E_{total}$ allows the proposed method to be integrated in existing codes, and to compare the two objective functions directly, as both contain the aforementioned `push-pull' effect.
+Some literature suggests that emissions and costs should not be discounted in the same way, as the change in valuation over time (represented by discounting) differs for economic and environmental aspects.
+For simplicity, a single discount factor $\gamma$ is used here, but the possibility of differential discounting is suggested for future research.
+
+Similarly to the monetary cost function, the total emissions can be split in the construction emissions $E_c=E_{const}(x)$, obsolescence emissions $E_o=(E_{const}(x)\frac{\omega}{\gamma})$ and failure emissions $E_f=(E_{const}(x)+E_H)\frac{P_f(x)}{\gamma}$.
+A linear formulation could be used for $E_{const}(x)$ as is often done for $C_{const}$:
+\begin{equation}
+    \label{eqn:E_const_lin}
+    E_{const}(x) = E_0 + E_1 x 
+\end{equation}
+In this formulation, the constant emissions $E_0$ represent the emissions produced by the transport of structural components or other sources independent of $x$, for example, while the variable emissions $E_1$ are the emissions caused by producing the structural material used in the components.
+
+% The additional failure emissions $E_H$ are expected to be small compared to $E_{const}$, especially when compared to the same ratio in the cost model.
+% Structural failure, by itself, does not cause much greenhouse gas emissions outside of replacement of the structure, which is already represented in $E_{const}$ in the failure term.
+% The effects of this will become clear in the case study presented in the next section.
+
+\subsection{Primary approach: shadow-costing / weighted sum method}
+The single utility function to be optimised is formulated using a shadow price $c_e$, expressed in monetary units per kg of CO\textsubscript{2}-equivalent emissions.
+This forms the augmented cost function $C_{total,aug}(x)$, which is the new objective function proposed in this paper.
+The optimisation problem becomes:
+\begin{equation}
+    \begin{aligned}
+        x_{opt,aug} =\arg \min_{x} C_{total,aug}(x) = C_{total}(x) + c_e E_{total}(x) \\
+    \end{aligned}
+\end{equation}
+With $x_{opt,aug}$ leading to $P_{f,opt,aug}$ and $\beta_{opt,aug}$.
+In multi-objective optimisation, approaches such as this fall under the weighted sum method \citep{Deb2001Multi-objectiveAlgorithms}, with weight factors $[1,c_e]$ for objective functions $[C_{tot}(x), E_{tot}(x)]$.
+Deviations from this optimum could be penalised using asymmetric loss functions, see for example \citep{vanGelder2000StatisticalStructures} using linear-exponential loss functions.
+This is however considered outside the scope of the current research.
+
+The determination of the weight factors, in this case the shadow price $c_e$, is the main challenge of this method.
+In the case study following this section, a realistic value considering the environmental impacts of CO\textsubscript{2}-emissions will be used, and the effect of using different values will be analysed afterwards.
+
+\subsection{Alternative approach: threshold values / $\varepsilon$-constraint}
+As mentioned, instead of aggregating the costs and emissions, one of the two could be minimised with the other being converted to a constraint by imposing a threshold value, denoted $C_{max}$ or $E_{max}$.
+This is known as the $\varepsilon$-constraint method in literature \citep{Deb2001Multi-objectiveAlgorithms}.
+Both functions then influence the resulting $\beta_{opt}$ without needing to weigh them against each other directly.
+The optimisation problem can then be formulated as:
+\begin{equation}
+    \begin{aligned}
+        \min_{x} \quad & C_{total}(x)\\
+        \textrm{s.t.} \quad & E_{total}(x) \leq E_{max}\\
+    \end{aligned}
+\end{equation}
+Or:
+\begin{equation}
+    \begin{aligned}
+        \min_{x} \quad & E_{total}(x)\\
+        \textrm{s.t.} \quad & C_{total}(x) \leq C_{max}\\
+    \end{aligned}
+\end{equation}
+Where the optimal value if $x$ then leads to the constrained optimal reliability, denoted here as $\beta_{copt,Emax}$ or $\beta_{copt,Cmax}$ respectively.
+The challenge is then to choose a threshold value for the constraint.
+This could be helped by formulating the thresholds relative to the monetary optimum, which can be considered as a reference point representing the conventional approach.
+This alternative optimisation approach will also be applied in the following case study.
+

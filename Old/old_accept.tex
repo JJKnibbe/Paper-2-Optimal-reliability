@@ -1,0 +1,39 @@
+% \subsection{Acceptable reliability}
+% As mentioned, while this paper is focused on optimal reliability, the method for finding acceptable reliability is briefly explained for completeness's sake.
+% For this criterion, only the first two terms $C_c$ and $C_o$ of the total cost function are considered, defined as the safety investment function $C_{safety}$:
+
+% \begin{equation}
+%     \label{eqn:C_safety}
+%     C_{safety} = C_c + C_o = C_{const}(x) \left(1 + \frac{\omega}{\gamma} \right)
+% \end{equation}
+
+% Aside from this function, two more quantities are needed: the number of fatalities occurring at failure $N_f$, and the societal willingness to pay (SWTP) for life safety, derived from the life quality index (LQI) and expressed as $\frac{G}{q} C_x$ \cite{Pandey2004LifeSafety}, where $G$ is the GDP per capita, $q$ the ratio of work time to leisure time, and $C_x$ a societal constant dependent on age and risk distribution.
+% An investment in life safety is deemed to be efficient from a societal point of view if the marginal number of lives saved multiplied by the SWTP exceeds the marginal cost of the investment.
+% Requiring that all societally efficient investments are made (and skipping some derivation for brevity), the following inequality can be derived between the marginal change in the safety cost and failure probability \cite{Viljoen2012DerivingLQI}:
+
+% \begin{equation}
+%     \label{eqn:LQI_criterion}
+%     -\frac{d P_f (x)}{dx} \leq \frac{\gamma \frac{dC_{safety}(x)}{dx}}{\frac{G}{q} C_x N_f} = K_1
+% \end{equation}
+
+% This sets an upper bound on the failure probability itself, which becomes the acceptable value $P_{f,acc}$ ($\beta_{acc}$), corresponding to $x_{acc}$ where the inequality holds exactly.
+% The value of $K_1$ is the relative life-saving cost, and influences where the acceptable value is located.
+% Table \ref{tab:LQI_table} shows the general relation between $K_1$ and $\beta_{acc}$, for the linear $C_{const}$ function and $x$ representing $\mu_R/\mu_S$, as previously described. 
+% Note that this is very dependent on the definition of the cost function and the meaning of the decision variable $x$, so this table could look very different for other formulations.
+
+% \begin{table}
+% \caption{Conventional acceptable reliability indices, from \citep{Viljoen2012DerivingLQI}}
+%     \centering
+    
+%     \begin{tabular}{c|cc}
+%          Life-saving costs&  $K_1$ range& $\beta_{acc}$\\ \hline
+%          Large&  $10^{-3} \sim 10^{-2}$& 3.1\\ \hline
+%          Medium&  $10^{-4} \sim 10^{-3}$& 3.7\\ \hline
+%          Small&  $10^{-5} \sim 10^{-4}$& 4.2\\
+%     \end{tabular}
+    
+%     \label{tab:LQI_table}
+% \end{table}
+
+% Figure \ref{fig:generic_cost_Pf} visualises the current approach.
+% The combination of optimal and acceptable reliability can be viewed as a constrained optimisation, where $C_{total}$ is the objective function and equation \ref{eqn:LQI_criterion} forms the constraint.

@@ -1,0 +1,140 @@
+% Hingorani and Köhler considered many different cases by using varying combinations of beam length, spacing between different beams under the floor, ratios for the variable and permanent load and steel strength classes.
+% In this paper, only one case is considered by setting these parameters to the following values:
+
+% \begin{itemize}
+%     \item Beam Length $L$: 18 $\mathrm{m}$
+%     \item Spacing between beams $D$: 9 $\mathrm{m}$
+%     \item Steel yield strength $f_{y,k}$: $\mathrm{355 MPa}$
+%     \item Variable load $q_k$: 3 $\mathrm{kN/m^2}$ (characteristic value)
+%     \item Self-weight (beam and slab) $g_{sw,k}$: 2.4 $\mathrm{kN/m^2}$ (characteristic value)
+%     \item Non-structural permanent load $g_{nsl,k}$: 0.6 $\mathrm{kN/m^2}$ (characteristic value)
+% \end{itemize}
+
+% The decision parameter $x$ in this problem is the (plastic) section modulus of the beam.
+% The failure probability is determined through the following limit state function:
+
+% \begin{equation}
+%     \label{eqn:LSF}
+%     g(x, \mathbf{Y}) = \theta_R f_y x - \theta_E \frac{(g_{sw} + g_{nsl} + \theta_q q)DL^2}{8}
+% \end{equation}
+
+% Where the random variables in $\mathbf{Y}$ are the loads $q$, $g_{sw}$ and $g_{nsl}$, the steel yield strength $f_y$ and model uncertainties $\theta_R$, $\theta_E$ and $\theta_q$.
+% The distributions of these variables were derived from \cite{Vrouwenvelder2024ReliabilityEurocodes} and another paper by Hingorani and Köhler \cite{Hingorani2023TowardsDesign}.
+% They are fully described in Table \ref{tab:distributions}.
+% Note that the mean values differ from the aforementioned characteristic values.
+
+% \begin{table}[]
+%     \centering
+%     \begin{tabular}{c|c|c|c|c|c}
+%          Variable & Description & Unit & Distribution & $\mu$ & $\sigma / \mu$  \\ \hline
+%          $q$& Variable load & kN/m\textsuperscript{2}& Gumbel & 1.2&0.49\\
+%          $g_{sw}$& Self-weight load& kN/m\textsuperscript{2}& Normal& 2.364& 0.045\\
+%          $g_{nsl}$& Non-structural load& kN/m\textsuperscript{2}& Normal& 0.4&0.1\\
+%          $f_y$& Yield strength steel& N/mm\textsuperscript{2}& Lognormal& 426&0.05\\
+%          $\theta_R$& Resistance model uncertainty&-& Lognormal& 1.15&0.05\\
+%          $\theta_E$& Load model uncertainty&-& Lognormal& 1.0&0.1\\
+%          $\theta_q$& Variable load model uncertainty&-& Lognormal& 1.0&0.1\\
+%     \end{tabular}
+%     \caption{Distributions of random variables in the limit state functions, from \cite{Vrouwenvelder2024ReliabilityEurocodes,Hingorani2023TowardsDesign}}
+%     \label{tab:distributions}
+% \end{table}
+
+
+% The volume of the beam, setting the cost and embodied emissions, is determined using the same linear relation Hingorani and Köhler used:
+
+% \begin{equation}
+%     \label{eqn:beam_volume}
+%     V_{beam} \approx 2.5 L \frac{x}{h}
+% \end{equation}
+
+% Assuming, as they did, the height of the beam to equal $L/25$ and accounting for units:
+
+% \begin{equation}
+%     \label{eqn:beam_volume_corrected}
+%     V_{beam} \approx 62.5 \cdot 10^{-9} \cdot x
+% \end{equation}
+
+% Where $V_{beam}$ in $\mathrm{m^3}$ and $x$ in $\mathrm{mm^3}$.
+% This expression can be used to formulate the construction and emissions costs:
+
+% \begin{equation}
+%     C_{const}(x) = c_{steel} \rho_{steel} V_{beam}(x)
+% \end{equation}
+
+% And the construction emissions:
+
+% \begin{equation}
+%     E_{const}(x) = e_{steel} \rho_{steel} V_{beam}(x)
+% \end{equation}
+
+% Where $\rho_{steel}$ is the material density of steel (7850 $\mathrm{kg/m^3}$), $c_{steel}$ is the material cost (2 $\mathrm{EUR/kg}$), and $e_{steel}$ is the emission intensity (1.13 $\mathrm{kg CO_2eq/kg}$).
+% Again, the same values as Hingorani and Köhler are used.
+% Note that the functions are linear, and that no constant costs $C_0$ or constant emissions $E_0$ are considered.
+ 
+% The additional failure costs $C_H$ are taken equal to $SWTP \cdot N_F$, where $SWTP$ is the societal willingness-to-pay for life safety derived from the LQI \cite{Pandey2004LifeSafety} (denoted earlier as $\frac{G}{q}C_x$), and $N_F$ is the number of fatalities expected to occur at structural failure.
+% These costs can be expected to have a significant influence on the optimal reliability, so this choice is reflected upon later in section \ref{sec:C_H_discussion}.
+% The calculation of the expected number of fatalities $N_F$ is somewhat elaborate, so this is not reproduced here for the sake of brevity.
+% Readers are instead referred to another paper by Hingorani presenting a model for $N_F$ based on floor area and consequence class (CC2, in this case) \cite{Hingorani2020ConsequenceStructures}.
+% The resulting value for $N_F$ is 13.48 persons.
+% With an SWTP of 2.775 million euros per person, $C_H$ is set to 37.41 million euros.
+
+% The additional failure emissions $E_H$ are calculated as a sum of the loads on the beam, with each load multiplied by a different emission intensity factor.
+% For this purpose, the self-weight load $g_{sw}$ consists of the beam and the hollow-core slab, which have different intensity factors.
+% As the volume of the beam varies with $x$ (as does the height of the slab, while the total self-weight remains constant), the value of $E_H$ also varies somewhat with $x$.
+% Again, the full elaboration is given in \cite{Hingorani2023SustainabilityDesign} for brevity.
+
+% The final cost and emission functions can now be formulated:
+
+% \begin{equation}
+%     \label{eqn:C_total_case}
+%     C_{total}(x) = C_{const}(x) + C_{const}(x) \frac{\omega}{\gamma} + (C_{const}(x) + C_H) \frac{P_f(x)}{\gamma}
+% \end{equation}
+
+% \begin{equation}
+%     \label{eqn:E_total_case}
+%     E_{total}(x) = E_{const}(x) + E_{const}(x) \frac{\omega}{\gamma} + (E_{const}(x) + E_H(x)) \frac{P_f(x)}{\gamma}
+% \end{equation}
+
+% With the discount rate set to 0.03 and the obsolescence rate to 0.02 (once every 50 years).
+% These two functions are referred to as the objective functions in the following optimisation procedures.
+
+% To find $\beta_{opt}$ using these functions, and to indicate the interaction between the two objective functions, four optimisation steps will now be followed.
+% First, an `initial design' is found using the partial factor method from the Eurocodes \cite{EN1990}.
+% Second, the cost and emission objectives separately, similar to what Hingorani and Köhler did.
+% Next, the problem is considered as a multi-objective optimisation.
+% Finally, the two objectives are combined through the proposed shadow-costing scheme, yielding a single optimum as proposed in the previous section.
+% In the next section, the behaviour of this optimum is considered in relation to the problem's parameters, as well as the alternative method to find $\beta_{opt}$ using constraints instead of a single objective.
+
+\subsection{Eurocode design}
+\label{sec:EC_design}
+To indicate the relevant order of magnitude of $x$, and the ratios between the construction and failure components of the cost and emission functions at such values, first a partial-factor based design value $x_{EC}$ is found, based on the partial factor method from EN-1990.
+This value is not expected to be optimal for either of the objective functions, but is rather meant to give a first indication of what a realistic design \emph{could} be. 
+Hence, it is calculated using the quasi-probabilistic method derived from current norms.
+This is done by reformulating the limit state function as a deterministic performance function, using characteristic values and partial factors to replace the stochastic variables:
+
+\begin{equation}
+    \label{eqn:LSF_EC}
+    g_{EC}(x) = \gamma_M f_{y,k} \cdot x - \frac{(\gamma_G(g_{sw,k} + g_{nsl,k}) + \gamma_Q q_k)DL^2}{8}
+\end{equation}
+
+With the partial factors $\gamma_M=1$, $\gamma_G=1.35$, and $\gamma_Q=1.5$ (not to be confused with the discount factor in the cost and emission functions) and the aforementioned characteristic values defining the specific case.
+Setting $g_{EC}(x)=0$ and solving for $x$ yields $x_{EC}=8.77\cdot10^6$ mm\textsuperscript{3}.
+The failure probability for this $x$ is $P_f(x_{EC})=2.2\cdot10^{-6}$ ($\beta=4.6$).
+As mentioned in section \ref{sec:proposed_emission}, the ratio between $C_H$ and $C_c$ is expected to be larger than $E_H$ and $E_c$.
+Table \ref{tab:EC_table} contains these values at $x_{EC}$, providing an indication of these ratios.
+
+\begin{table}[]
+    \centering
+    \begin{tabular}{c|c||c|c}
+        Costs & EUR & Emissions & kg CO2\textsubscript{2}eq \\ \hline
+        $C_{c}$ & 9101 & $E_{c}$ & 4867  \\
+        $C_{H}$ & 37.41*10\textsuperscript{6} & $E_H$ & 1203 \\
+        $C_H / C_{const}$ & 4112 & $E_H/E_{const}$ & 0.25
+    \end{tabular}
+    \caption{Ratio between construction and additional failure costs and emissions at $x_{EC}$, to indicate the `push-pull' effect of both objective functions}
+    \label{tab:EC_table}
+\end{table}
+
+Indeed, $C_H$ is much larger than $C_c$ at $x_{EC}$, while $E_H$ is smaller than $E_c$.
+Based on the aforementioned 'push-pull` effect, the optimal failure probability for minimal costs is expected to be smaller than that for minimal emissions.
+To investigate this, both functions are minimised separately in the next step.

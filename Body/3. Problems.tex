@@ -1,0 +1,86 @@
+\newpage
+\section{Appraisal of the current approach}
+\label{sec:appraisal}
+
+The approach for determining $\beta_{opt}$ described in the previous section can be related to the normative ethical principle of \emph{utilitarianism}: an action is morally right if it improves some measure of total societal utility \citep{Mill1863Utilitarianism, vandePoel2011EthicsEngineering}.
+Given a set of possible actions, the optimal choice is the one that yields the largest utility, hence applying utilitarianism to engineering design naturally leads to solving an optimisation problem by a decision-maker.
+In determining the optimal reliability of a structure, the benefit provided by the structure is generally assumed to be independent of the decision parameter $x$. 
+Maximising utility is then equivalent to minimising cost (or disbenefit), and this minimisation yields the optimal reliability $\beta_{opt}$.
+
+A prevalent criticism of utilitarianism is whether all relevant aspects of a problem can truly be captured or aggregated quantitatively within a single `utility function'\citep{vandePoel2011EthicsEngineering}. 
+As mentioned previously, the optimal reliability should ideally be informed by all three `pillars' of sustainability, economic, environmental and social, to give decision-makers a broad view of the problem.
+However, the current formulation of $C_{total}$ only takes monetary costs into account, so this criticism is warranted in this case.
+To address it, the optimisation problem should also take environmental and societal effects into account, and not just monetary aspects.
+The following addresses how this could be achieved for both `missing' pillars, and addresses a number of other ethical aspects.
+
+
+\subsection{Environmental sustainability}
+
+As mentioned in the introduction, the environmental impact of the construction sector in terms of CO\textsubscript{2}-emissions is significant.
+Climate change caused by these emissions affects society as a whole, while the monetary costs are generally borne only by the owner or operator of a structure.
+The current approach therefore leads to distributive injustice: the distribution of costs and benefits across stakeholders is not represented in the optimisation problem, so decision-makers cannot ensure that it remains equitable.
+This is another common criticism of utilitarianism \cite{vandePoel2011EthicsEngineering}.
+% If the utility function only represents the perspective of a single stakeholder, and the effects on others are ignored, the distribution of costs and benefits can become unfair even for a decision that supposedly maximises the utility.
+
+For the environment and its importance to society to directly inform in the optimal reliability value, the societal burden (quantified as emissions) borne by the environment must also be considered as part of the utility function.
+Aggregating different aspects requires them to be commensurate with each other, so that they can be summed up in a single quantity.
+This is considered aggregationism, an aspect of utilitarianism taking account of multiple perspectives \citep{Narveson2009WhenWhy}, and the challenge in this approach is then how much one aspect should weigh against another, and what the role of the decision-maker is in this.
+Assuming the aggregated utility function is still expressed in monetary units (e.g. euros), this means the emissions need to be `priced' in the same unit.
+This `social cost of carbon' or \emph{shadow price} then represents the burden caused by emissions: economic damage, health impacts, loss of living standards, reduced opportunities for future generations \citep{Boyce2018CarbonEquity}.
+It can be viewed as compensation or prevention costs for such damage, or a broader valuation of carbon emissions against monetary aspects, which also has distributional effects \cite{Shei2024DistributionalApproaches}.
+Quantified values for this price therefore vary across literature, from less than 100 to several thousand dollars per ton CO\textsubscript{2} emissions \citep{Lomborg2020WelfarePolicies, Wang2022GlobalCosts, KamaliSaraji2024BridgingApplications}, also depending on worldwide policies adopted to address climate change \citep{Yang2018SocialPathways, IntergovernmentalPanelonClimateChangeIPCC2023SummaryPolicymakers}, so placing a single number on this cost is difficult.
+
+Alternatively, instead of considering both costs and emissions in one utility function, one could be considered as a constraint in optimising the other.
+This approach replaces aggregationism with sufficientarianism, an important approach for distributive justice \citep{Alcantud2022Sufficientarianism}.
+A threshold value is needed instead of a carbon price: if the aspect (costs or emissions) considered as a constraint is above this threshold for a certain value of the decision variable $x$, that decision is deemed infeasible.
+This constraint is considered as binary: either the disbenefit is sufficiently small, and the decision is `allowed', or the disbenefit is too large and it is not.
+The feasible value of $x$ leading to the smallest value in the other objective, still forming the utility function, is then the optimum $x_{opt}$.
+
+\subsection{Social sustainability}
+The most important societal consideration in determining the target reliability is the safety of the users occupying the structure.
+If the structure collapses, their lives are at risk, which should be reflected in the utility function $C_{total}$.
+Intuitively, this can be expressed in the additional damage costs $C_H$, which represent the consequences of structural failure aside from replacing the structure itself.
+This requires the loss of a human life to be monetarised, which is complicated from an ethical perspective, and a typical problem that arises when risks to life safety are judged using a utilitarian approach \citep{vandePoel2011EthicsEngineering}.
+However, if life safety is to inform the optimal reliability, it inevitably needs to be incorporated in the decision-making problem in some manner.
+In fact, a constraint based on monetarised human life safety is currently used to define the \emph{acceptable} reliability $\beta_{acc}$ following a mean life saving costs (MLSC) approach \citep{Viljoen2012DerivingLQI}.
+The Life-Quality Index (LQI) is used to quantify a societal willingness to pay ($SWTP$) for saving a statistical human life \citep{Pandey2004LifeSafety}, based on the available societal resources to invest in safety improvements through GDP and life expectancy.
+A minimum acceptable safety level is then derived by considering efficient safety investments to be required from a societal point of view.
+
+This same quantity could be used as `compensation costs' for fatalities in $C_{total}$, by defining $C_H$ as follows:
+\begin{equation}
+    \label{eqn:C_H_SWTP}
+    C_H = SWTP \cdot N_f + C_{H,other}
+\end{equation}
+Where $N_f$ is the expected number of fatalities should the structure fail, and $C_{H,other}$ are additional damage costs unrelated to human safety.
+Some literature uses a similar formulation \citep{Hingorani2023TowardsDesign}, but it is not explicitly mandated in ISO2394 \citep{iso2394} (appendix G) or the JCSS model code \cite{JCSS2000ProbabilisticDesign} (section 7) for \emph{optimal} reliability.
+In fact, ISO2394 notes the possibility of the optimal reliability being unacceptable from the perspective of life safety ($\beta_{acc} > \beta_{opt}$).
+Using the above formulation for $C_H$, however, ensures that this does not occur \citep{Fischer2019OptimalDesign} ($C_H \geq SWTP \cdot N_f$ leads to $\beta_{opt} \geq \beta_{acc}$).
+On the other hand, if human live safety is disregarded in the optimisation (i.e. by defining $C_H = C_{H,other}$), their value is implicitly placed at zero.
+For many residential and commercial structures, loss of human life is the most important factor in the consequences of structural failure, so $C_{H,other}$ will often be much smaller than $SWTP \cdot N_f$, or even negligible compared to it.
+In that case, $\beta_{opt}$ \emph{will} be notably smaller than $\beta_{acc}$, and the risk to the users of the structure would thus be too large for one criterion while being disregarded in the other.
+This would again be inadmissible from the perspective of distributive justice \citep{vandePoel2011EthicsEngineering}.
+
+Furthermore, the two reliability criteria of $\beta_{acc}$ and $\beta_{opt}$ have somewhat different interpretations.
+The LQI-based criterion only provides an acceptable lower bound on the reliability index $\beta$, but does not state whether a value larger than this threshold could be of merit \citep{Fischer2019OptimalDesign}.
+To answer this, the optimal reliability criterion is considered, but it would then not be useful to decision makers if it consistently yielded smaller reliabilities than the acceptable value.
+Rather, $\beta_{opt}$ should reflect potential advantages to exceeding the lower bound of $\beta_{acc}$.
+This will generally be the case if $C_H \geq SWTP \cdot N_f$, as noted above, where $C_{H,other}$ then sets these advantages in terms of expected damage costs being reduced by further decreasing $P_f$.
+So, to allow the advantages of further increasing reliability beyond the acceptable minimum to be considered by decision-makers, and to avoid the implicit neglect of human life safety leading to unacceptable `optimal' values, this formulation of Equation \ref{eqn:C_H_SWTP} for $C_H$ should be used, despite ethical trepidations in monetarising human lives.
+
+% Taking human life risks into account covers an important aspect of social sustainability.
+% The norm ISO14075 \cite{ISO14075} on social life cycle assessment contains a number of other social aspects which should be taken into account in engineering design, such as accessibility, adaptability and cultural heritage. 
+% These are important, but generally not directly affected by structural reliability, the design aspect considered in this paper.
+% Because of this, they are not further considered here, and the remainder of this work focuses on involving environmental sustainability in the optimal reliability approach, while accepting the above monetarisation of human life risk.
+
+\subsection{Towards an improved framework}
+
+Considering the points above, an improved method for finding optimal reliability should ensure that life safety end environmental impact. are taken into account in the optimisation problem.
+The former can be achieved by ensuring that $C_H$ includes fatality compensation costs, by mandating a formulation such as Equation \ref{eqn:C_H_SWTP}.
+This does not require the framework of optimising $C_{total}$ and the LQI-based acceptance criterion to be fundamentally altered, though $\beta_{acc}$ and $\beta_{opt}$ can be interpreted slightly differently, with the acceptance criterion giving a lower bound on the reliability and the optimal value representing the potential utility of exceeding this lower bound.
+
+Including emissions requires more development. 
+The optimisation problem inherently needs to be augmented with a second objective function representing the emissions.
+The next section proposes how this function can be formulated, and how the optimisation problem can then be solved through either aggregationism or sufficientarianism, resulting in a single optimal value.
+
+
+

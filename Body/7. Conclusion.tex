@@ -1,0 +1,30 @@
+\newpage
+\section{Conclusion}
+
+This paper proposed and demonstrated an augmented method to establish optimal reliabilities for engineering structures, which allows decision makers to take social and environmental sustainability into account.
+In terms of social sustainability, it was concluded that monetarisation of potential fatalities due to structural failure can be ethically justified, and is in fact needed to ensure the optimal reliability criterion provides value in addition to the existing acceptance criterion.
+This can be incorporated without fundamentally changing the approach, but was not explicitly mandated previously.
+
+In terms of environmental sustainability, a larger alteration to the conventional approach was proposed, by incorporating emissions in the optimisation problem using a lifetime emission model based on the Rackwitz renewal model that the cost function is also based on.
+This similarity still allows the proposed method to be integrated well into existing codes.
+These two models can be combined into a single, augmented cost function using a shadow price for emissions, which can then be optimised to find an augmented optimal reliability.
+Alternatively, a constrained optimisation problem can be formulated, where one model forms the cost function and the other the constraint.
+
+In a typical case study, the result of these two optimisation approaches is compared to the conventional method.
+Optimising the costs and emissions separately yields two optimal criteria, with the emissions leading to a smaller optimal value.
+Using a combined objective function with a shadow price of 0.80 \EUR{}/ kg CO\textsubscript{2}eq, the optimal reliability index reduces by 0.12, though this is influenced by the applied shadow price value $c_e$.
+A larger value yields a larger reduction, as does a larger desired emission reduction $\delta E_{desired}$ or allowed cost increase $\delta C_{allowed}$ in the alternative approach.
+The two approaches interact through the Pareto front, where a value needs to be chosen for either $c_e$, $\delta E_{desired}$ or $\delta C_{allowed}$, leading to an optimal reliability index in between the monetary optimum $\beta_{opt,C}$ and emission minimum $\beta_{opt,E}$.
+The optimal reliabilities are affected by the degree of uncertainty in the probabilistic model of the considered structure, as well as the additional damage costs $C_H$, and structure parameters such as the supported floor area, load ratios and yield strength.
+The difference between the conventional and augmented methods appears to be mostly unaffected by these, however, and is mainly driven by the importance of the emissions relative to the costs, described either through the shadow price $c_e$ in general or the emission shadow cost relative to the monetary cost of the specific structure.
+
+% Subsequently, the sensitivity of this result to the shadow price of the emissions with the costs was investigated.
+% By considering the problem as different types of optimisation problems, the influence of this important parameter was shown.
+% The larger the shadow price, the smaller the augmented optimal reliability becomes, though the difference is modest for the range of values commonly found in literature.
+% The alternative approach was also demonstrated by formulating the constraint based on a relative desired decrease in emissions or allowed increases in costs.
+% To obtain an optimal reliability value from combining the two models, either a shadow price or a threshold value for a constraint is needed.
+% Finally, the influence of the additional damage costs $C_H$ were shown, including some deliberation on the role of human life safety in this aspect.
+% It was concluded that using this value can be ethically justified, even if some trepidations still exist.
+% In general, the optimal reliability value is very sensitive to the value of $C_H$, hence its use in defining consequence classes
+
+% The proposed framework is able to establish optimal reliability values taking both

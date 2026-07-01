@@ -1,0 +1,35 @@
+\section{Introduction}
+
+
+The construction industry contributes more than 10\% of the GDP of many countries \citep{RILEM2022GLOBEEnvironment}, along with 20\% of global CO\textsubscript{2} emissions \citep{Huang2018CarbonSector}.
+From both economic and environmental viewpoints, there is therefore much to gain by optimising structural designs in terms of minimal costs and emissions, while ensuring they are safe enough from a societal point of view.
+Decision makers in the field of structural engineering, such as designers, code committees, or asset managers, benefit from guidance on this optimisation.
+As such, a crucial question from their perspective is the appropriate level of reliability for a structure, in other words, \emph{how safe should a structure be?}
+The answer to this question then informs decisions on structural design.
+To find it, the costs, risks, and benefits of a structure need to be considered, ideally in the broad sense, including environmental impacts and societal risks due to the structure potentially failing and causing harm to its users.
+These aspects can be quantified through life cycle analyses, taking all three `pillars' of sustainability into account \citep{Knibbe2026PlaceHolder, Valdivia2021PrinciplesAssessment}.
+The level of reliability corresponding to the best `performance' over the life cycle of the structure can then be considered as an appropriate design target for decision makers.
+
+This level can be numerically represented by the target failure probability $P_{f,target}$ or, equivalently, the target reliability index $\beta_{target}$.
+These are linked through the following conversion:
+\begin{equation}
+\label{eqn:beta_Pf}
+    \beta = \Phi^{-1}(1-P_f)
+\end{equation}
+Where $\Phi^{-1}(\cdot)$ is the inverse of the cumulative distribution function of a standard-normal distributed random variable.
+Current norms on target reliabilities \citep{iso2394, EN1990} distinguish optimal and acceptable reliability values \citep{Fischer2019OptimalDesign}, noted here as $\beta_{opt}$ and $\beta_{acc}$ respectively, where the most stringent value forms the target reliability:
+\begin{equation}
+    \beta_{target} = \max(\beta_{opt}, \beta_{acc})
+\end{equation}
+The optimal value is found by minimising a lifetime cost function, and the acceptable value through the minimal required investment to ensure adequate life safety.
+This current framework has been developed based on the work of several authors in the field of structural safety, including \citep{Rackwitz2000OptimizationVerification, Rackwitz2006TheCriteria, Rackwitz2008TheVerification, Viljoen2012DerivingLQI, Fischer2019OptimalDesign, Pandey2004LifeSafety, Pandey2024LifeStructures}.
+At present, however, the cost functions used to determine both $\beta_{opt}$ and $\beta_{acc}$ are based on monetary considerations only.
+Environmental concerns are not accounted for, which is undesirable considering the aforementioned impact of construction on the environment and the societal urgency of mitigating climate change.
+If the construction sector is to contribute to this mitigation, decision-makers require an approach for determining target reliabilities that \emph{does} take environmental impacts into account.
+Such an approach is presented in this paper, focusing on optimal reliabilities.
+This builds upon previous work by the same authors, focused on acceptable reliability \citep{Knibbe2026PlaceHolder}. 
+
+Sections 2 and 3 present the current approach for finding optimal reliability values, and expand on the need for further development from social and environmental perspectives.
+This serves as background to Section 4, where the augmented approach itself is presented, followed by a demonstration through a typical case study in Section 5.
+Section 6 contains an analysis of the case study results, and the impact of the presented approach with respect to the conventional approach.
+Finally, Section 7 provides a conclusion and a brief discussion.

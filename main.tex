@@ -1,0 +1,176 @@
+\documentclass[]{interact}
+
+\usepackage[sort]{natbib}% Citation support using natbib.sty
+% \bibpunct[, ]{(}{)}{;}{a}{,}{,}% Citation support using natbib.sty
+% \renewcommand\bibfont{\fontsize{10}{12}\selectfont}
+
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+
+%% The lineno packages adds line numbers. Start line numbering with
+%% \begin{linenumbers}, end it with \end{linenumbers}. Or switch it on
+%% for the whole article with \linenumbers.
+\usepackage{lineno}
+
+% \usepackage[backend=biber,natbib=true]{biblatex}
+
+\usepackage{eurosym}
+\usepackage{booktabs}
+
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{xltabular}
+\usepackage[table]{xcolor}
+
+\usepackage{wrapfig}
+
+% \usepackage{appendix}
+
+\usepackage{epstopdf}% To incorporate .eps illustrations using PDFLaTeX, etc.
+\usepackage[caption=false]{subfig}% Support for small, `sub' figures and tables
+%\usepackage[nolists,tablesfirst]{endfloat}% To `separate' figures and tables from text if required
+%\usepackage[doublespacing]{setspace}% To produce a `double spaced' document if required
+%\setlength\parindent{24pt}% To increase paragraph indentation when line spacing is doubled
+
+% \usepackage[sort]{natbib}% Citation support using natbib.sty
+\bibpunct[, ]{(}{)}{;}{a}{,}{,}% Citation support using natbib.sty
+\renewcommand\bibfont{\fontsize{10}{12}\selectfont}% To set the list of references in 10 point font using natbib.sty
+\bibliographystyle{abbrvnat}
+
+%\usepackage[natbibapa,nodoi]{apacite}% Citation support using apacite.sty. Commands using natbib.sty MUST be deactivated first!
+%\setlength\bibhang{12pt}% To set the indentation in the list of references using apacite.sty. Commands using natbib.sty MUST be deactivated first!
+%\renewcommand\bibliographytypesize{\fontsize{10}{12}\selectfont}% To set the list of references in 10 point font using apacite.sty. Commands using natbib.sty MUST be deactivated first!
+
+\theoremstyle{plain}% Theorem-like structures provided by amsthm.sty
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}
+\newtheorem{notation}{Notation}
+
+\begin{document}
+\title{Sustainable optimal reliability for engineering structures}
+
+%% use optional labels to link authors explicitly to addresses:
+\author{\name{Jelle Knibbe\textsuperscript{a,b}, Raphaël Steenbergen\textsuperscript{b,c}, Pieter van Gelder\textsuperscript{a}, Amir Pooyan Afghari\textsuperscript{a}}
+\affil{\textsuperscript{a}Faculty of Technology, Policy and Management, Delft University of Technology,  Jaffalaan 5, Delft, the Netherlands; 
+\textsuperscript{b} Department of Reliable Structures, Netherlands Organisation for Applied Scientific Research (TNO), Molengraaffsingel 8, Delft, the Netherlands; 
+\textsuperscript{c}Faculty of Engineering and Architectures, Ghent University, Jozef Plateaustraat 22, Ghent, Belgium}}
+
+%% Abstract, max 250 words!
+
+\maketitle
+
+\begin{abstract}
+%% Text of abstract
+
+This paper presents a novel approach towards deriving optimal reliability for engineering structures.
+Currently, this is based on life cycle monetary optimisation, using a cost function dependent on the design of a structure, its failure probability and obsolescence rate.
+This paper proposes augmenting this cost function with a shadow-costed emissions function, such that the optimal reliability is influenced by social environmental aspects as well as monetary ones, allowing decision-makers to take a broader view on this crucial aspect of structural design.
+This new approach is demonstrated with a case study based on a typical structural design, where applying the emission-augmented cost function reduces the optimal reliability index by 0.12 compared to the conventional approach.
+This result is sensitive to the shadow price used to commensurate cost and emissions, with a larger shadow price or larger environmental impact relative to cost resulting in a larger reduction.
+Alternatively, the optimisation can also be performed using either the cost or emission function, with the other as a constraint.
+The threshold value for this constraint then sets the optimal reliability index.
+Furthermore, both optimal reliability values are also sensitive to the costs incurred when the structure fails, the degree of uncertainty in the loads on and resistance of the structure, and the general design conditions of the structure.
+However, the difference between the conventional and augmented optimal reliability is less affected by these aspects.
+
+
+
+
+\end{abstract}
+
+
+
+%% Keywords
+\begin{keywords}
+%% keywords here, in the form: keyword \sep keyword
+Structural safety; Optimal reliability; Shadow costs; Sustainability
+%% PACS codes here, in the form: \PACS code \sep code
+
+%% MSC codes here, in the form: \MSC code \sep code
+%% or \MSC[2008] code \sep code (2000 is the default)
+
+\end{keywords}
+
+%% Add \usepackage{lineno} before \begin{document} and uncomment 
+%% following line to enable line numbers
+\linenumbers
+
+%% main text
+%%
+
+\input{Body/1. Introduction}
+\input{Body/2. Status quo}
+\input{Body/3. Problems}
+\input{Body/4. New framework}
+\input{Body/5. Demonstration}
+\input{Body/6. Analysis}
+\input{Body/7. Conclusion}
+
+\subsection*{CRediT authorship contribution statement}
+
+\textbf{Jelle Knibbe}: Conceptualisation, Formal analysis, Writing – original draft
+\textbf{Raphaël Steenbergen}: Conceptualisation, Writing – review \& editing
+\textbf{Pieter van Gelder}: Writing – review \& editing
+\textbf{Amir Pooyan Afghari}: Writing – review \& editing
+
+\subsection*{Acknowledgement}
+This paper is part of a PhD project supported by Delft University of Technology (TU Delft) and Netherlands Organisation for Applied Scientific Research (TNO).
+
+\bibliography{references.bib}
+
+%% The Appendices part is started with the command \appendix;
+%% appendix sections are then done as normal sections
+\appendix
+
+\input{Body/A. Concrete beam}
+% \section{Example Appendix Section}
+% \label{app1}
+
+% Appendix text.
+
+% %% For citations use: 
+% %%       \cite{<label>} ==> [1]
+
+% %%
+% Example citation, See \cite{lamport94}.
+
+%% If you have bib database file and want bibtex to generate the
+%% bibitems, please use
+%%
+% \bibliographystyle{elsarticle-num} 
+
+
+%% else use the following coding to input the bibitems directly in the
+%% TeX file.
+
+%% Refer following link for more details about bibliography and citations.
+%% https://en.wikibooks.org/wiki/LaTeX/Bibliography_Management
+
+% \begin{thebibliography}{00}
+
+% %% For numbered reference style
+% %% \bibitem{label}
+% %% Text of bibliographic item
+
+% \bibitem{lamport94}
+%   Leslie Lamport,
+%   \textit{\LaTeX: a document preparation system},
+%   Addison Wesley, Massachusetts,
+%   2nd edition,
+%   1994.
+
+% \end{thebibliography}
+\end{document}
+
+\endinput
+%%
+%% End of file `elsarticle-template-num.tex'.

@@ -1,0 +1,74 @@
+% The additional damage cost $C_H$ is another crucial parameter in finding the optimal reliability, even without factoring in emissions.
+% The larger it is, the more severe the consequence of structural failure, hence the smaller the optimal failure probability $P_{f,opt}$ becomes.
+% Quantifying this parameter is difficult, however.
+% As mentioned, Hingorani and Köhler defined $C_H$ as the multiplication of the societal willingness to pay for life safety (SWTP) based on the LQI \cite{Pandey2004LifeSafety}, and the number of fatalities occurring at failure $N_f$ \cite{Hingorani2020ConsequenceStructures}.
+% This is equal to the denominator in the Equation \ref{eqn:LQI_criterion}.
+% However, whereas that criterion is established based on the net benefit criterion of the life-quality index \cite{Pandey2004LifeSafety, Viljoen2012DerivingLQI, Fischer2013OnCriteria}, which considers \emph{relative} changes in life expectancy and consumption, using this formulation for $C_H$ in the objective function directly represents an absolute evaluation of a human life in monetary terms.
+% This is complicated (if not controversial) from an ethical perspective, and a typical problem that arises when risks to life safety are judged using a utilitarian approach \cite{vandePoel2011EthicsEngineering}.
+% If decisions are morally right or wrong based on their quantifiable consequences, these consequences involve risk to human life (however marginal), then human life needs to be quantified.
+% If this is to be avoided out of ethical principles, one of two outcomes can be foreseen:
+
+% The first option is that utilitarianism is still followed, but human life is not taken into account in the determination of utility, and so does not influence $C_H$.
+% Implicitly, this places the value of a human life at 0, which the same ethical principle should not deem acceptable.
+% In fact, this would ignore human safety as an important aspect of social sustainability, and thereby make the approach less broadly sustainable.
+% The second option is to follow a different philosophical framework to determine the target reliability.
+% However, if the outcome should be an \emph{optimal} decision for structural safety, there needs to be some characteristic to optimise.
+% Utilitarianism naturally lends itself to this, as it allows outcomes of different values to be compared to each other and one `best' option to be considered.
+% Other philosophical frameworks, such as duty or virtue ethics, could determine whether a decision is morally justified or not, or could shape how the process of decision making should look, but are not intuitively able to identify a best course of action \cite{vandePoel2011EthicsEngineering}.
+
+% In light of this discussion, it is interesting to note that the LQI-based acceptance criterion involves another ethical aspect of decision-making for technological risks: distributive justice, among the three actors identified in Section \ref{sec:need_for_optacc}.
+% The distribution of costs, benefits and risks is a crucial aspect in determining risk acceptance, and another commonly raised weak point of utilitarianism \cite{vandePoel2011EthicsEngineering}.
+% The safety cost function $C_{safety}$ of Equation \ref{eqn:C_safety} is used to formulate a marginal relative decrease in resources available for consumption (note that its derivative is divided by the GDP in Equation \ref{eqn:LQI_criterion}), which is `traded' for a relative increase in life safety. 
+% This cost function does not include the safety term $C_f$ \cite{Fischer2013OnCriteria} from the total cost function $C_{total}$ from Equation \ref{eqn:C_total}.
+% The reasoning behind this is that reducing the expected failure costs by reducing $P_f$ constitutes a benefit for the owner or operator of the structure, and that this should not be accounted for in determining acceptable reliability from a societal perspective \cite{Fischer2011DefiningRegulation}.
+% A risk for the societal actor and a benefit for the private actor can indeed form an unjust distribution of the different utilities (negative or positive) affected by a decision.
+% That said, the LQI criterion only provides an \emph{acceptable} value for the reliability of a structure.
+% It places an upper bound on the failure probability $P_f$, but does not state whether values smaller ($\beta$ larger) than this threshold could still be more desirable or not.
+
+% The optimal reliability criterion exists in parallel to the acceptance criterion precisely to answer this question, and to be able to establish a `best' decision, utilitarianism is a logical approach.
+% To then also avoid the implicit neglect of human life safety (which would itself be another distributive injustice), \emph{some} monetary value needs to be chosen.
+% The LQI-based SWTP is a convenient choice for this, due to its simple data requirements.
+% Therefore, the approach used by Hingorani and Köhler, and the case study in this paper, can be justified, despite ethical trepidations
+
+% Aside from the cost of human lives, other material damage may also occur, which should be included in $C_H$.
+% For an office building, such as in the case study (or really any building mostly occupied by persons), this could include the building's inventory, which would be relatively limited compared to the human damage costs.
+% For structures built for storing expensive equipment, these costs could be more substantial.
+% For critical infrastructure, the non-functioning of an important link could cause massive economic damage, even if the number of fatalities caused by a collapse is limited (e.g. maritime infrastructure that is scarcely populated by persons, or an importan bridge collapsing at night).
+% Recall that $C_{const}$ is also incurred (and $E_{const}$ embodied) at failure in the renewal model, so reconstruction of the structure should not be included in $C_H$, as it would be double-counted.
+
+% Questions that could be raised include \cite{Shrader-Frechette1991RiskReforms}:
+% \begin{itemize}
+%     \item Can all positive and negative consequences of a decision truly be accounted for quantitatively? 
+%     \item Can all consequences be commensurated with each other?
+%     \item Are the consequences distributed fairly over different stakeholders?
+% \end{itemize}
+
+% The above questions then relate to how the cost is defined: the owner will most likely be interested in the `real', monetary cost over the lifetime of the structure.
+% The users, assuming they do not bear these costs themselves, will mostly be interested in reducing their personal safety risk.
+% For the environment, harmful emissions such as greenhouse gases represent an important disbenefit.
+% All these aspects could be quantified separately in some way, but in order to arrive at a single optimal reliability, only a single utility measure can be considered.
+% The optimal decision maximises this one value, also called the utility function.
+% If multiple aspects are to be taken into account, they need to either be aggregated within or form a constraint to the utility function.
+% Aggregating different aspects requires them to be commensurate with each other, so that they can be summed up in a single quantity.
+% This is known in philosophical terms as aggregationism, a central aspect of utilitarianism \cite{Narveson2009WhenWhy}, and the challenge this approach presents is then how much one aspect should weigh against another.
+
+% Using constraints instead of aggregating can be seen as sufficientarianism, an important approach in distributive justice \cite{Alcantud2022Sufficientarianism}.
+% A constraint on the optimisation of the utility function does not need to be formulated in the same quantity as the utility function itself (in other words, a constraint on a monetary optimisation problem can be quantified in terms of emissions), so commensuration is not required.
+% Rather, a threshold value is needed: if a disbenefit (costs or emissions) is above this threshold for a certain value of the decision variable $x$, that decision is deemed infeasible and cannot be the optimum.
+% This means the aspect forming the constraint is considered in a binary fashion: either the disbenefit is sufficiently small, and the decision is `allowed', or the disbenefit is too large and it is not (hence the term sufficientarianism).
+% Further reduction below the threshold does not improve the utility function, which may not accurately represent the actual desires of the actors (i.e. the owner will always prefer a cheaper structure).
+
+% If neither of these two approaches is followed for an aspect, it 'disappears' from the problem and does not inform the `optimal' reliability.
+% Therefore, an ethically sound approach to establishing target reliabilities should, ideally, take all relevant aspects into account.
+% The cost function to be used for finding $\beta_{opt}$ should weigh or be constrained by all relevant `costs' of the structure. 
+% To ensure the resulting reliability is acceptable from a societal point of view, the possible decisions should be further constrained by the criterion defining $\beta_{acc}$, which should then also take these different aspects into account.
+% The previous paper \cite{Knibbe2026PlaceHolder} contributed to this goal for acceptable reliability, and so the next section of this paper presents a method to augment the currently used cost function with emissions in order to define a more comprehensive approach to finding optimal reliabilities.
+
+
+
+
+% Another problem, even if all aspects can be commensurated, is whether the distribution of costs and benefits across the stakeholders can be considered fair.
+% This is a general problem with utilitarianism, as the benefit for one group can compensate disbenefit for another, without changing the total utility.
+% If such a situation is deemed unacceptable, utilitarianism does not suffice as the sole philosphical background.
+% Therefore, a second, parallel approach is needed, one based on distributive justice.
+% Literature suggests that this is one of the most important aspects to take into account when judging the acceptability of technological risks \cite{vandePoel2011EthicsEngineering}, leading this approach to connect with the acceptable reliability criterion $\beta_{acc}$.
